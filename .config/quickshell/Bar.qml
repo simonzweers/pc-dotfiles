@@ -1,31 +1,60 @@
 // Bar.qml
 import Quickshell
+import QtQuick
 
 Scope {
-  // no more time object
+	Variants {
+		model: Quickshell.screens
 
-  Variants {
-    model: Quickshell.screens
+		PanelWindow {
+			id: panel
+			required property var modelData
+			screen: modelData
 
-    PanelWindow {
-      required property var modelData
-      screen: modelData
+			anchors {
+				top: true
+				left: true
+				right: true
+			}
 
-      anchors {
-        top: true
-        left: true
-        right: true
-      }
+			// float the bar with the same spacing as hyprland's gaps_out
+			margins {
+				top: 10
+				left: 10
+				right: 10
+			}
 
-      implicitHeight: 30
+			implicitHeight: 30
+			color: "transparent"
 
-      ClockWidget {
-        anchors.left: parent.left
-        anchors.leftMargin: 10
-        anchors.verticalCenter: parent.verticalCenter
+			Rectangle {
+				anchors.fill: parent
+				radius: 15
+				color: Theme.bg
 
-        // no more time binding
-      }
-    }
-  }
+				ClockWidget {
+					anchors.left: parent.left
+					anchors.leftMargin: 15
+					anchors.verticalCenter: parent.verticalCenter
+				}
+
+				WorkspacesWidget {
+					anchors.centerIn: parent
+				}
+
+				Row {
+					anchors.right: parent.right
+					anchors.rightMargin: 15
+					anchors.verticalCenter: parent.verticalCenter
+					spacing: 16
+
+					CpuWidget {}
+					MemoryWidget {}
+					NetworkWidget { bar: panel }
+					BluetoothWidget {}
+					VolumeWidget {}
+				}
+			}
+		}
+	}
 }
