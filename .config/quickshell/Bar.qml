@@ -8,6 +8,8 @@ Scope {
 
 		PanelWindow {
 			id: panel
+			// the dropdown menu currently open on this bar, so opening another closes it
+			property var openDropdown: null
 			required property var modelData
 			screen: modelData
 
@@ -51,8 +53,8 @@ Scope {
 					CpuWidget {}
 					MemoryWidget {}
 					NetworkWidget { bar: panel }
-					BluetoothWidget {}
-					VolumeWidget {}
+					BluetoothWidget { bar: panel }
+					VolumeWidget { bar: panel }
 				}
 			}
 		}
