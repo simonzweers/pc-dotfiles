@@ -84,6 +84,7 @@ local menu = "rofi -modi drun,run,window -show drun"
 
 -- See https://wiki.hyprland.org/Configuring/Environment-variables/
 
+hl.env("XCURSOR_THEME", "Adwaita")
 hl.env("XCURSOR_SIZE", "24")
 hl.env("HYPRCURSOR_SIZE", "24")
 
@@ -204,17 +205,17 @@ hl.animation({
 	style = "slide",
 })
 
-hl.workspace_rule({
-	workspace = "w[tv1]",
-	gaps_out = 0,
-	gaps_in = 0,
-})
-
-hl.workspace_rule({
-	workspace = "f[1]",
-	gaps_out = 0,
-	gaps_in = 0,
-})
+-- hl.workspace_rule({
+-- 	workspace = "w[tv1]",
+-- 	gaps_out = 0,
+-- 	gaps_in = 0,
+-- })
+--
+-- hl.workspace_rule({
+-- 	workspace = "f[1]",
+-- 	gaps_out = 0,
+-- 	gaps_in = 0,
+-- })
 
 hl.window_rule({
 	border_size = 0,
@@ -335,12 +336,12 @@ hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tru
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Smart borders
-hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
-hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
-hl.window_rule({ match = { float = false, workspace = "w[tv1]" }, border_size = 0 })
-hl.window_rule({ match = { float = false, workspace = "w[tv1]" }, rounding = 0 })
-hl.window_rule({ match = { float = false, workspace = "f[1]" }, border_size = 0 })
-hl.window_rule({ match = { float = false, workspace = "f[1]" }, rounding = 0 })
+-- hl.workspace_rule({ workspace = "w[tv1]", gaps_out = 0, gaps_in = 0 })
+-- hl.workspace_rule({ workspace = "f[1]", gaps_out = 0, gaps_in = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "w[tv1]" }, border_size = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "w[tv1]" }, rounding = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "f[1]" }, border_size = 0 })
+-- hl.window_rule({ match = { float = false, workspace = "f[1]" }, rounding = 0 })
 
 hl.window_rule({
 	match = {
@@ -437,8 +438,8 @@ hl.config({
 		border_size = 2,
 		-- https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
 		col = {
-			active_border = { colors = { "rgba(C5C8C6ee)", "rgba(707880ee)" }, angle = 45 },
-			inactive_border = "rgba(282727aa)",
+			active_border = { colors = { "rgba(fabd2fee)", "rgba(fe8019ee)" }, angle = 45 }, -- gruvbox yellow -> orange
+			inactive_border = "rgba(3c3836aa)", -- gruvbox bg1
 		},
 		-- Set to true enable resizing windows by clicking and dragging on borders and gaps
 		resize_on_border = false,
@@ -457,7 +458,7 @@ hl.config({
 			enabled = true,
 			range = 4,
 			render_power = 3,
-			color = "rgba(1a1a1aee)",
+			color = "rgba(1d2021ee)", -- gruvbox bg0_h
 		},
 		-- https://wiki.hyprland.org/Configuring/Variables/#blur
 		blur = {
@@ -486,8 +487,8 @@ hl.config({
 	},
 	-- https://wiki.hyprland.org/Configuring/Variables/#misc
 	misc = {
-		force_default_wallpaper = -1, -- Set to 0 or 1 to disable the anime mascot wallpapers
-		disable_hyprland_logo = false, -- If true disables the random hyprland logo / anime girl background. :(
+		force_default_wallpaper = 0, -- Set to 0 or 1 to disable the anime mascot wallpapers
+		disable_hyprland_logo = true, -- If true disables the random hyprland logo / anime girl background. :(
 	},
 	--############
 	--## INPUT ###
@@ -546,7 +547,7 @@ hl.config({
 hl.on("hyprland.start", function()
 	hl.exec_cmd("nm-applet")
 	hl.exec_cmd("quickshell -p ~/pc-dotfiles/.config/quickshell")
-	hl.exec_cmd("dunst")
+	-- hl.exec_cmd("dunst") -- quickshell is the notification daemon now
 	hl.exec_cmd("systemctl --user start hyprpolkitagent")
 	hl.exec_cmd(terminal, { workspace = "1 silent" })
 	hl.exec_cmd("flatpak run app.zen_browser.zen", { workspace = "3 silent" })
