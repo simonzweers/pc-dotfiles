@@ -85,6 +85,6 @@ export PATH=$PATH:/home/simon/.spicetify
 # opencode
 export PATH=/home/simon/.opencode/bin:$PATH
 
-# source <(fzf --zsh)
+source <(fzf --zsh)
 
 fastfetch
