@@ -6,6 +6,8 @@ import Quickshell
 import QtQuick
 
 Singleton {
+	// darkest, used for the wallpaper so it stands out from the bar
+	readonly property color bg0: "#141617"
 	readonly property color bg: "#282828"
 	readonly property color bg1: "#3c3836"
 	readonly property color bg2: "#504945"

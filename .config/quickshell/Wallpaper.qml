@@ -1,6 +1,7 @@
 // Wallpaper.qml
 // desktop background drawn from command output instead of an image:
-// fastfetch on the left, a random cowsay fortune (like the hyprlock screen) on the right
+// fastfetch in the top left corner with a random cowsay fortune (like the hyprlock screen) at the bottom under it,
+// inxi hardware info on the right half, or under fastfetch on narrow screens
 import QtQuick
 import Quickshell
 import Quickshell.Io
@@ -12,6 +13,7 @@ Scope {
 	property string logo: ""
 	property string info: ""
 	property string cow: ""
+	property string hardware: ""
 
 	// strip terminal colour codes and trailing blank lines
 	function clean(text) {
@@ -38,6 +40,14 @@ Scope {
 			const sep = line.indexOf(": ")
 			if (sep < 0) return colored(line, Theme.gray)
 			return colored(line.slice(0, sep + 1), Theme.yellow) + htmlEscape(line.slice(sep + 1))
+		}).join("<br>")
+	}
+
+	// inxi with section headers and keys coloured, like inxi's own colour output
+	function styleHardware(text) {
+		return clean(text).split("\n").map(line => {
+			if (!line.startsWith(" ")) return colored(line, Theme.yellow)
+			return line.split(/( +)/).map(part => part.endsWith(":") ? colored(part, Theme.aqua) : htmlEscape(part)).join("")
 		}).join("<br>")
 	}
 
@@ -68,17 +78,30 @@ Scope {
 		}
 	}
 
-	// keep uptime and friends current
+	// cpu, gpu and memory; -y sets the line width so it wraps to fit half the screen
+	Process {
+		id: hardwareProc
+		running: true
+		command: ["inxi", "-CGm", "-c0", "-y", "90"]
+		stdout: StdioCollector {
+			onStreamFinished: root.hardware = root.styleHardware(text)
+		}
+	}
+
+	// keep uptime, memory usage and friends current
 	Timer {
 		interval: 60 * 1000
 		running: true
 		repeat: true
-		onTriggered: infoProc.running = true
+		onTriggered: {
+			infoProc.running = true
+			hardwareProc.running = true
+		}
 	}
 
-	// a new fortune every few minutes
+	// a new fortune every 10 minutes
 	Timer {
-		interval: 5 * 60 * 1000
+		interval: 10 * 60 * 1000
 		running: true
 		repeat: true
 		onTriggered: cowProc.running = true
@@ -94,6 +117,7 @@ Scope {
 		model: Quickshell.screens
 
 		PanelWindow {
+			id: wallpaper
 			required property var modelData
 			screen: modelData
 
@@ -107,12 +131,16 @@ Scope {
 			WlrLayershell.layer: WlrLayer.Background
 			WlrLayershell.namespace: "quickshell-wallpaper"
 			exclusionMode: ExclusionMode.Ignore
-			color: Theme.bg
+			color: Theme.bg0
 
+			// below the floating bar
+			readonly property int contentTop: 70
+
+			// the logo touches the left edge of the screen so it looks like it's sticking out
 			Row {
-				anchors.left: parent.left
-				anchors.leftMargin: parent.width * 0.08
-				anchors.verticalCenter: parent.verticalCenter
+				id: fetch
+				x: 0
+				y: wallpaper.contentTop
 				spacing: 30
 
 				OutputText {
@@ -121,17 +149,29 @@ Scope {
 				}
 
 				OutputText {
+					id: info
 					textFormat: Text.StyledText
 					text: root.info
 				}
 			}
 
 			OutputText {
-				anchors.right: parent.right
-				anchors.rightMargin: parent.width * 0.08
-				anchors.verticalCenter: parent.verticalCenter
+				x: info.x
+				anchors.bottom: parent.bottom
+				anchors.bottomMargin: 30
 				text: root.cow
 				color: Theme.gray
+			}
+
+			// fastfetch doesn't leave room for inxi on the right half (e.g. a portrait monitor)
+			readonly property bool narrow: fetch.width + 60 > width / 2
+
+			// inxi goes below fastfetch on narrow screens
+			OutputText {
+				x: wallpaper.narrow ? info.x : parent.width / 2
+				y: wallpaper.narrow ? fetch.y + fetch.height + 30 : wallpaper.contentTop
+				textFormat: Text.StyledText
+				text: root.hardware
 			}
 		}
 	}
