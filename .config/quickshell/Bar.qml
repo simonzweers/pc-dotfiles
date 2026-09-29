@@ -55,6 +55,17 @@ Scope {
 					NetworkWidget { bar: panel }
 					BluetoothWidget { bar: panel }
 					VolumeWidget { bar: panel }
+
+					// opens the power menu
+					BarText {
+						text: "\u{F0425}"
+						color: Theme.red
+
+						MouseArea {
+							anchors.fill: parent
+							onClicked: Quickshell.execDetached(["qs", "ipc", "-p", Quickshell.shellDir, "call", "powermenu", "toggle"])
+						}
+					}
 				}
 			}
 		}
