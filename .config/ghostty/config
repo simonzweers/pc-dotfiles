@@ -1,0 +1,9 @@
+theme="TokyoNight Night"
+font-family = "CaskaydiaCoveNerdFont"
+font-feature = -calt
+window-decoration = "server"
+window-theme = dark
+background-opacity = 0.85
+foreground=#C5C9C5
+background=#000000
+confirm-close-surface=false
