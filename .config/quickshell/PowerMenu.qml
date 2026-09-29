@@ -14,7 +14,7 @@ Scope {
 	readonly property var actions: [
 		{ name: "Lock", icon: "\u{F033E}", color: Theme.blue, run: () => Quickshell.execDetached(["hyprlock"]) },
 		{ name: "Suspend", icon: "\u{F04B2}", color: Theme.purple, run: () => Quickshell.execDetached(["systemctl", "suspend"]) },
-		{ name: "Log out", icon: "\u{F0343}", color: Theme.yellow, run: () => Hyprland.dispatch("exit") },
+		{ name: "Log out", icon: "\u{F0343}", color: Theme.yellow, run: () => Hyprland.dispatch("hl.dsp.exit()") },
 		{ name: "Reboot", icon: "\u{F0709}", color: Theme.orange, run: () => Quickshell.execDetached(["systemctl", "reboot"]) },
 		{ name: "Power off", icon: "\u{F0425}", color: Theme.red, run: () => Quickshell.execDetached(["systemctl", "poweroff"]) },
 	]
