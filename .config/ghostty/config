@@ -1,4 +1,4 @@
-theme="TokyoNight Night"
+theme="Gruvbox Dark"
 font-family = "CaskaydiaCoveNerdFont"
 font-feature = -calt
 window-decoration = "server"
