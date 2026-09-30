@@ -32,6 +32,15 @@ bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
 
+# alt-left / alt-right to move by word
+bindkey '^[[1;3D' backward-word
+bindkey '^[[1;3C' forward-word
+
+# ctrl-x ctrl-e to edit the current command in $EDITOR
+autoload -Uz edit-command-line
+zle -N edit-command-line
+bindkey '^x^e' edit-command-line
+
 # history configuration
 HISTSIZE=10000
 HISTFILE=~/.zsh-history

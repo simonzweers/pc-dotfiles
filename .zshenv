@@ -6,9 +6,10 @@ export PATH="$PATH:$HOME/software/zig/build/stage3/bin"
 export PATH="$PATH:$HOME/.spicetify"
 export PATH="$PATH:$HOME/go/bin"
 
-EDITOR="nvim"
-TERMINAL="ghostty"
-WWW="firefox"
+export EDITOR="nvim"
+export VISUAL="nvim"
+export TERMINAL="ghostty"
+export WWW="firefox"
 
 PATH="$PATH:$HOME/software/questasim/install/questasim/linux_x86_64/"
 PATH="$PATH:$HOME/software/questasim-install-10.6/questasim/linux_x86_64"
