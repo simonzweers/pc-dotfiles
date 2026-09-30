@@ -111,7 +111,7 @@ Scope {
 	Process {
 		id: artProc
 		running: true
-		command: ["sh", "-c", "cd ~/pc-dotfiles/dotfiles-main && jp2a --colors --color-depth=24 wallpapers/$(ls wallpapers | shuf | head -n1)"]
+		command: ["sh", "-c", "cd ~/pc-dotfiles/ && jp2a --colors --color-depth=24 ~/wallpapers/$(ls ~/wallpapers | shuf | head -n1)"]
 		stdout: StdioCollector {
 			onStreamFinished: root.art = root.styleArt(text)
 		}
