@@ -55,10 +55,15 @@ sudo zypper install openSUSE-repos-Tumbleweed-NVIDIA
 sudo zypper in nvidia-open-driver-G07-signed-kmp-meta
 ```
 
-## Installing gruvbix GTK theme
+## Installing gruvbox GTK theme
 
 ```bash
 git clone https://github.com/Fausto-Korpsvart/Gruvbox-GTK-Theme.git
 cd Gruvbox-GTK-Theme/themes
 ./install.sh
+
+sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.icons
+flatpak override --user --filesystem=xdg-config/gtk-4.0
+sudo flatpak override --filesystem=xdg-config/gtk-4.0
 ```
