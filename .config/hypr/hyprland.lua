@@ -254,9 +254,9 @@ hl.bind("ALT + L", hl.dsp.exec_cmd("hyprlock"))
 hl.bind(mainMod .. " + SHIFT + F", hl.dsp.exec_cmd("killall -SIGUSR1 waybar"))
 
 local screenshotKey = "F12"
-hl.bind(mainMod .. " + " .. screenshotKey, hl.dsp.exec_cmd("screenshot.sh region"))
-hl.bind(mainMod .. " + SHIFT + " .. screenshotKey, hl.dsp.exec_cmd("screenshot.sh window"))
-hl.bind(mainMod .. "+ SHIFT + CONTROL + " .. screenshotKey, hl.dsp.exec_cmd("screenshot.sh screen"))
+hl.bind(mainMod .. " + " .. screenshotKey, hl.dsp.exec_cmd("qs ipc -p ~/pc-dotfiles/.config/quickshell call screenshot region"))
+hl.bind(mainMod .. " + SHIFT + " .. screenshotKey, hl.dsp.exec_cmd("qs ipc -p ~/pc-dotfiles/.config/quickshell call screenshot window"))
+hl.bind(mainMod .. "+ SHIFT + CONTROL + " .. screenshotKey, hl.dsp.exec_cmd("qs ipc -p ~/pc-dotfiles/.config/quickshell call screenshot screen"))
 
 hl.bind(mainMod .. " + SHIFT + F10", hl.dsp.exec_cmd("/home/$USER/.local/scripts/random-wallpaper.sh"))
 

@@ -5,4 +5,5 @@ Scope {
 	Bar {}
 	NotificationPopups {}
 	PowerMenu {}
+	Screenshot {}
 }

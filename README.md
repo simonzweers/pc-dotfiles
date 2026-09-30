@@ -42,7 +42,10 @@ sudo zypper in \
          lazygit \
          wl-clipboard \
          zsh \
-         stow
+         stow \
+         grim \
+         slurp \
+         libnotify-tools
 ```
 
 ## Installing nvidia drivers
