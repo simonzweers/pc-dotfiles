@@ -6,4 +6,5 @@ Scope {
 	NotificationPopups {}
 	PowerMenu {}
 	Screenshot {}
+	Launcher {}
 }

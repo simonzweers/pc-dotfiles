@@ -65,7 +65,7 @@ require("monitors")
 local terminal = "ghostty"
 local fileManager = "yazi"
 -- $menu = wofi --show drun
-local menu = "rofi -modi drun,run,window -show drun"
+local menu = "qs ipc -p ~/pc-dotfiles/.config/quickshell call launcher toggle apps"
 
 --################
 --## AUTOSTART ###
@@ -244,7 +244,7 @@ hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.window.close())
 hl.bind("SHIFT + ALT + E", hl.dsp.exit())
 hl.bind(mainMod .. " + T", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(menu))
-hl.bind(mainMod .. " + SHIFT + d", hl.dsp.exec_cmd("rofi -modi drun,run,window -show window"))
+hl.bind(mainMod .. " + SHIFT + d", hl.dsp.exec_cmd("qs ipc -p ~/pc-dotfiles/.config/quickshell call launcher toggle windows"))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + E", hl.dsp.layout("togglesplit"))
 hl.bind(mainMod .. " + SHIFT + O", hl.dsp.exec_cmd("/home/$USER/.local/scripts/cheatsheet.sh"))
@@ -422,7 +422,7 @@ hl.layer_rule({
 })
 
 hl.layer_rule({
-	match = { namespace = "rofi" },
+	match = { namespace = "quickshell-launcher" },
 	blur = true,
 })
 

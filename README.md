@@ -15,7 +15,6 @@ sudo zypper in \
          hyprland-guiutils \
          nwg-displays \
          dmenu \
-         rofi \
          tmux \
          rg \
          ripgrep \
@@ -45,7 +44,8 @@ sudo zypper in \
          stow \
          grim \
          slurp \
-         libnotify-tools
+         libnotify-tools \
+         hyprpolkitagent
 ```
 
 ## Installing nvidia drivers
