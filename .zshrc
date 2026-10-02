@@ -31,6 +31,12 @@ zinit cdreplay -q
 bindkey -e
 bindkey '^p' history-search-backward
 bindkey '^n' history-search-forward
+bindkey '^[[1;3C' forward-word
+bindkey '^[[1;3D' backward-word
+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
 
 # history configuration
 HISTSIZE=10000
@@ -60,6 +66,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias nv='nvim'
 alias tm='tmux'
+alias tmn='tmux new-session -s ${PWD##*/}'
 alias tmsel='tmux a -t $(tmux ls | fzf | sed -r "s|^(.*): .*|\1|g")'
 alias lazyvim='NVIM_APPNAME=nvim-lazyvim nvim'
 
