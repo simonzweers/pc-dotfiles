@@ -10,6 +10,16 @@ PanelWindow {
 	id: dropdown
 	required property PanelWindow bar
 	default property alias content: layout.data
+	// when set, the dropdown is centered under this item instead of sitting in the top right corner
+	property Item anchorItem: null
+	// left edge of the dropdown on the screen, updated whenever it opens
+	property real anchorX: 0
+
+	function updateAnchorX() {
+		if (!anchorItem) return
+		const center = bar.margins.left + anchorItem.mapToItem(null, anchorItem.width / 2, 0).x
+		anchorX = Math.max(10, Math.min(screen.width - width - 10, center - width / 2))
+	}
 
 	screen: bar.screen
 	visible: false
@@ -17,13 +27,15 @@ PanelWindow {
 
 	anchors {
 		top: true
-		right: true
+		right: anchorItem === null
+		left: anchorItem !== null
 	}
 
 	// sits below the bar, with the same gap as hyprland's gaps_out
 	margins {
 		top: 10
 		right: 10
+		left: anchorX
 	}
 
 	// don't push windows out of the way
@@ -39,6 +51,7 @@ PanelWindow {
 	// only one dropdown is open at a time
 	onVisibleChanged: {
 		if (!visible) return
+		updateAnchorX()
 		if (bar.openDropdown && bar.openDropdown !== dropdown)
 			bar.openDropdown.visible = false
 		bar.openDropdown = dropdown

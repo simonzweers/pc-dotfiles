@@ -50,6 +50,7 @@ Scope {
 					anchors.verticalCenter: parent.verticalCenter
 					spacing: 16
 
+					MediaWidget { bar: panel }
 					CpuWidget {}
 					MemoryWidget {}
 					NetworkWidget { bar: panel }
