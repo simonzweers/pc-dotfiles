@@ -24,7 +24,7 @@ Scope {
 			grim -g "$geometry" "$file" ;;
 		esac || exit 1
 		wl-copy --type image/png < "$file"
-		notify-send -a Screenshot -i "$file" "Screenshot saved" "$file"
+		notify-send -a Screenshot -i "$file" "Screenshot copied to clipboard" "Saved to $file"
 	`
 
 	function take(mode: string, delay: real): void {
