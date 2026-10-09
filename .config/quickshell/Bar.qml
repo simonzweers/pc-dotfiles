@@ -56,6 +56,7 @@ Scope {
 					NetworkWidget { bar: panel }
 					BluetoothWidget { bar: panel }
 					VolumeWidget { bar: panel }
+					BatteryWidget {}
 					ScreenshotWidget { bar: panel }
 
 					// opens the power menu
