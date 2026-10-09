@@ -7,7 +7,7 @@ Row {
   spacing: 4
 
   // always shown, even when they don't exist yet
-  readonly property var persistent: [1, 2, 3, 4, 9, 10]
+  readonly property var persistent: [1, 2, 3, 4, 5, 8, 9, 10]
 
   // workspaces without an icon show their number
   readonly property var icons: ({
@@ -15,6 +15,7 @@ Row {
     2: "\u{F0379}", // monitor
     3: "\u{F059F}", // browser
     4: "\u{F082E}", // notebook
+    5: "\u{f1064}", // work 
     8: "\u{F0B79}", // chat
     9: "\u{F1B6}",  // steam
     10: "\u{F1BC}", // spotify
