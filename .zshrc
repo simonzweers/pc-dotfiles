@@ -95,4 +95,6 @@ export PATH=/home/simon/.opencode/bin:$PATH
 
 source <(fzf --zsh)
 
+source ~/.zshenv
+
 fastfetch
