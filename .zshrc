@@ -21,6 +21,7 @@ zinit snippet OMZP::sudo
 zinit snippet OMZP::command-not-found
 zinit snippet OMZP::dnf
 zinit snippet OMZP::docker
+zinit snippet OMZP::colored-man-pages
 
 # load completions
 autoload -U compinit && compinit
