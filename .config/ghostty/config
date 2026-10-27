@@ -1,9 +1,9 @@
-theme="Gruvbox Dark"
+theme="Flexoki Dark"
 font-family = "CaskaydiaCoveNerdFont"
 font-feature = -calt
 window-decoration = "server"
 window-theme = dark
-background-opacity = 0.80
+background-opacity = 0.7
 background-blur = true
 foreground=#C5C9C5
 background=#000000
